@@ -1,10 +1,8 @@
 const container = document.getElementById('letters-container');
-
-// Write your phrase here:
 const phrase = "Neon Gravity Letters Following My Cursor";
 const chars = phrase.split('');
 
-// Create letter objects with positions and random offsets
+// Set up each letter with a unique turbulence phase
 const letters = chars.map((char) => {
     const el = document.createElement('div');
     el.classList.add('letter');
@@ -17,8 +15,9 @@ const letters = chars.map((char) => {
         y: Math.random() * window.innerHeight,
         vx: 0,
         vy: 0,
-        offsetX: (Math.random() - 0.5) * 50, // slight target offset
-        offsetY: (Math.random() - 0.5) * 50
+        offsetX: (Math.random() - 0.5) * 50,
+        offsetY: (Math.random() - 0.5) * 50,
+        turbulenceOffset: Math.random() * 1000, // random phase for turbulence
     };
 });
 
@@ -30,9 +29,9 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 });
 
-function animate() {
+function animate(t) {
     for (let letter of letters) {
-        // Target with offset so they don't overlap perfectly
+        // Target position with offset
         const targetX = mouseX + letter.offsetX;
         const targetY = mouseY + letter.offsetY;
 
@@ -40,7 +39,11 @@ function animate() {
         letter.vx += (targetX - letter.x) * 0.01;
         letter.vy += (targetY - letter.y) * 0.01;
 
-        // Heavy damping
+        // Add turbulence as a wavy force
+        letter.vx += Math.cos(t / 500 + letter.turbulenceOffset) * 0.2;
+        letter.vy += Math.sin(t / 500 + letter.turbulenceOffset) * 0.2;
+
+        // Damping (viscous drag)
         letter.vx *= 0.80;
         letter.vy *= 0.80;
 
@@ -53,4 +56,5 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-animate();
+// Start the animation
+animate(0);
