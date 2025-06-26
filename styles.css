@@ -1,35 +1,25 @@
 body {
     background: black;
-    color: #39ff14; /* neon green */
+    color: #39ff14;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     overflow: hidden;
     cursor: crosshair;
 }
 
-.content {
-    padding: 40px;
-    text-align: center;
+#words-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
 }
 
-h1 {
-    font-size: 3rem;
-    text-shadow: 0 0 10px #39ff14;
-}
-
-p {
-    font-size: 1.2rem;
-}
-
-.tracker {
+.word {
     position: absolute;
-    pointer-events: none;
+    white-space: nowrap;
+    font-size: 1.5rem;
     color: #39ff14;
     text-shadow: 0 0 5px #39ff14;
-    font-size: 1.5rem;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
+    user-select: none;
 }
 
 footer {
