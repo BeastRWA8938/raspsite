@@ -7,29 +7,18 @@ body {
     cursor: crosshair;
 }
 
-#words-container {
+#letters-container {
     position: relative;
     width: 100vw;
     height: 100vh;
 }
 
-.word {
+.letter {
     position: absolute;
-    white-space: nowrap;
+    white-space: pre;
     font-size: 1.5rem;
     color: #39ff14;
     text-shadow: 0 0 5px #39ff14;
     user-select: none;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    background: #000;
-    color: #39ff14;
-    font-size: 0.9rem;
-    border-top: 1px solid #39ff14;
+    opacity: 0.9;
 }
