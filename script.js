@@ -1,20 +1,24 @@
-const container = document.getElementById('words-container');
+const container = document.getElementById('letters-container');
 
-// Customize your words
-const text = "Neon Gravity Words Following My Cursor Through Space and Honey".split(' ');
+// Write your phrase here:
+const phrase = "Neon Gravity Letters Following My Cursor";
+const chars = phrase.split('');
 
-// Words array with positions & velocities
-const words = text.map((word) => {
+// Create letter objects with positions and random offsets
+const letters = chars.map((char) => {
     const el = document.createElement('div');
-    el.classList.add('word');
-    el.innerText = word;
+    el.classList.add('letter');
+    el.innerText = char;
     container.appendChild(el);
+
     return {
         el,
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
         vx: 0,
-        vy: 0
+        vy: 0,
+        offsetX: (Math.random() - 0.5) * 50, // slight target offset
+        offsetY: (Math.random() - 0.5) * 50
     };
 });
 
@@ -27,23 +31,24 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animate() {
-    for (let w of words) {
-        // Attraction strength
-        const ax = (mouseX - w.x) * 0.02;
-        const ay = (mouseY - w.y) * 0.02;
+    for (let letter of letters) {
+        // Target with offset so they don't overlap perfectly
+        const targetX = mouseX + letter.offsetX;
+        const targetY = mouseY + letter.offsetY;
 
-        w.vx += ax;
-        w.vy += ay;
+        // Gentle attraction
+        letter.vx += (targetX - letter.x) * 0.01;
+        letter.vy += (targetY - letter.y) * 0.01;
 
-        // Damping to simulate "moving through honey"
-        w.vx *= 0.85;
-        w.vy *= 0.85;
+        // Heavy damping
+        letter.vx *= 0.80;
+        letter.vy *= 0.80;
 
-        w.x += w.vx;
-        w.y += w.vy;
+        letter.x += letter.vx;
+        letter.y += letter.vy;
 
-        w.el.style.left = w.x + 'px';
-        w.el.style.top = w.y + 'px';
+        letter.el.style.left = letter.x + 'px';
+        letter.el.style.top = letter.y + 'px';
     }
     requestAnimationFrame(animate);
 }
