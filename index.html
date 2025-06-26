@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Raspberry Pi Website</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Neon Pi</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="content">
+        <h1>Neon Raspberry Pi</h1>
+        <p>This text follows your cursor in neon green style.</p>
+    </div>
 
-    <header>
-        <h1>Welcome to My Raspberry Pi</h1>
-        <p>Hosted at 192.168.31.90</p>
-    </header>
+    <!-- The floating words -->
+    <div class="tracker" id="tracker">Hello from my Pi</div>
 
-    <main>
-        <section class="content-box">
-            <h2>About</h2>
-            <p>This is a simple webpage served by Apache on a Raspberry Pi. You can customize this content easily.</p>
-        </section>
+    <footer>&copy; 2025 Powered by Raspberry Pi</footer>
 
-        <section class="content-box">
-            <h2>Features</h2>
-            <ul>
-                <li>Fast and lightweight</li>
-                <li>Easy to customize</li>
-                <li>Runs 24/7 on your Pi</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Powered by Raspberry Pi</p>
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
